@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>micro:bit CSV Viewer</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="bar">
+    <div class="title">
+      <div class="h1">micro:bit CSV Viewer</div>
+      <div class="sub">x軸: 日時 / 左y軸: 温度(temp_OUT) / 右y軸: moist_lv または light</div>
+    </div>
+
+    <div class="controls">
+      <label class="control">
+        右軸:
+        <select id="rightAxisSelect">
+          <option value="moist_lv" selected>moist_lv</option>
+          <option value="light">light</option>
+        </select>
+      </label>
+
+      <label class="control">
+        表示範囲:
+        <select id="rangeSelect">
+          <option value="all" selected>全期間</option>
+          <option value="6h">直近6時間</option>
+          <option value="24h">直近24時間</option>
+        </select>
+      </label>
+
+      <button id="resetBtn" class="btn">リセット</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="canvasWrap">
+      <canvas id="chart" width="1200" height="520"></canvas>
+      <div id="tooltip" class="tooltip" hidden></div>
+    </div>
+
+    <section class="notes">
+      <div class="note">
+        <div class="label">操作</div>
+        <ul>
+          <li>マウスホバー: 近傍点の値を表示</li>
+          <li>ドラッグ: 横方向にスクロール（パン）</li>
+          <li>ホイール: 横方向ズーム</li>
+        </ul>
+      </div>
+      <div class="note">
+        <div class="label">読み込み元</div>
+        <div id="sourcePath" class="mono"></div>
+        <div id="stats" class="mono"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
